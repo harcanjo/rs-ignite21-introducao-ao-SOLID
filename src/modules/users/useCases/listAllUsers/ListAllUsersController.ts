@@ -10,12 +10,14 @@ class ListAllUsersController {
 
     try {
       const users = this.listAllUsersUseCase.execute({
-        user_id: String(user_id),
+        user_id: `${user_id}`,
       });
 
       return response.json(users);
     } catch (err) {
-      return response.status(400).json({ error: "User Error" });
+      return response
+        .status(400)
+        .json({ error: "Only admins can access the list" });
     }
   }
 }
